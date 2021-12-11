@@ -97,7 +97,7 @@ KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO")
 TLINKS_OBJ = tlinks(obj, KOBJ, KBKG, peso)
 TLINKS_BGK = tlinks(bkg, KBKG, KOBJ, peso)
 
-g.add_grid_tedges(nodeids, img, 255-img)
+g.add_grid_tedges(nodeids, KOBJ, KBKG)
 
 flow = g.maxflow()
 print(f"\n\nFlujo máximo: {flow}\n")
