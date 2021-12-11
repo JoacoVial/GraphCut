@@ -4,7 +4,7 @@ from skimage.io import imread, imshow
 from skimage.color import rgb2gray, rgb2hsv
 from skimage.filters import threshold_otsu
 from math import log
-
+import cap as K
 def otsu(imgName):
 	img = imread(imgName)
 	img_gray = rgb2gray(img)	
@@ -12,7 +12,7 @@ def otsu(imgName):
 	img_otsu  = img_gray < thresh
 	return(img_otsu)
 
-def prob(imgName, l ):
+def prob(imgName, l , KOBJ, KBKG):
 	img = imread(imgName)
 	pObj = rgb2gray(img)
 	pBkg = rgb2gray(img)
@@ -27,15 +27,21 @@ def prob(imgName, l ):
 			if(b > 0.400 and b <= 0.7): #30%
 				pObj[ac][bc]= -log(0.3) * l
 				pBkg[ac][bc]= -log(0.7)* l
-			if(b > 0.180 and b <= 0.400): #100%
-				pObj[ac][bc]= -log(1)* l
-				pBkg[ac][bc]= -log(0.0001)* l
 			if(b > 0.050 and b <= 0.180): #50%
 				pObj[ac][bc]= -log(0.5)* l
 				pBkg[ac][bc]= -log(0.5)* l
 			if(b <=0.050):#0%
-				pObj[ac][bc]= -log(0.0001)* l
-				pBkg[ac][bc]= -log(1)* l
+				pObj[ac][bc]= -log(0.01) * l
+				pBkg[ac][bc]= -log(1) * l
+			if(b > 0.180 and b <= 0.400): #100%
+				pObj[ac][bc]= -log(1) * l
+				pBkg[ac][bc]= -log(0.01) * l
+			if([bc,ac] in KOBJ):
+				pObj[ac][bc]= -log(1) * l
+				pBkg[ac][bc]= -log(0.01) * l				
+			if([bc,ac] in KBKG):
+				pObj[ac][bc]= -log(0.01) * l
+				pBkg[ac][bc]= -log(1) * l
 			bc=bc+1
 		ac=ac+1
 		bc=0

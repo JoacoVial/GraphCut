@@ -36,11 +36,12 @@ def tlinks(cap, meter, sacar, K):
                 link[i][j] = cap[i][j]
     return link
         
+imgName = 'mri-brain.jpg'
+img = cv2.imread(imgName, cv2.IMREAD_GRAYSCALE).astype(np.float)
+size = len(img)
 
-img = cv2.imread('ganglios.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float)
-img = cv2.resize(img, (256, 256))
+
 g = maxflow.Graph[int]()
-
 B = 0
 nodeids = g.add_grid_nodes(img.shape)
 
@@ -51,9 +52,11 @@ structure = np.array([  [0, 0, 0],
 W = []
 vecinos = []
 
+
+
 for i in range(len(img)):
     for j in range(len(img[i])):
-        if j == 255:
+        if j == size-1:
             B = 0
             vecinos.append(B)
         else:
@@ -75,7 +78,7 @@ structure = np.array([  [0, 0, 0],
 
 for i in range(len(img)):
     for j in range(len(img[i])):
-        if i == 255:
+        if i == size-1:
             B = 0
             vecinos.append(B)
         else:
@@ -90,19 +93,17 @@ W = np.array(W)
 
 g.add_grid_edges(nodeids, weights=W, structure=structure, symmetric=True)
 
-obj, bkg = Prob.prob('mri-brain.jpg', 1)
-KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO")
-KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO")
+KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO",imgName)
+KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO",imgName)
 
-TLINKS_OBJ = tlinks(obj, KOBJ, KBKG, peso)
-TLINKS_BGK = tlinks(bkg, KBKG, KOBJ, peso)
 
-g.add_grid_tedges(nodeids, TLINKS_OBJ, TLINKS_BKG)
+obj, bkg = Prob.prob(imgName, 1, KOBJ, KBKG)
+
+g.add_grid_tedges(nodeids, obj, bkg)
 
 flow = g.maxflow()
 print(f"\n\nFlujo máximo: {flow}\n")
 
-# sgm.shape == nodeids.shape
 sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 
 img2 = np.int_(np.logical_not(sgm))
@@ -110,5 +111,5 @@ img2 = np.int_(np.logical_not(sgm))
 ppl.imshow(img2)
 ppl.show()
 
-print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
-tracemalloc.stop()
+#print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
+#tracemalloc.stop()

@@ -1,23 +1,10 @@
 import cv2
 import numpy as np
 puntero = []
-def puntos(fo):
-    img=cv2.imread('mri-brain.jpg')
-
-    def generador_matriz(lista,size_x,size_y):
-        l=[]
-        for i in range(0,size_x):
-            l.append([])
-            for e in range(0,size_y):
-                boleano = True
-                for j in lista:
-                    if(j[0] == i and j[1] == e):
-                        boleano = False
-                        l[i].append(1)
-                if boleano:
-                    l[i].append(0)
-        return l
-
+def puntos(fo,imName):
+    global puntero
+    puntero = []
+    img=cv2.imread(imName)
     def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
         if event == cv2.EVENT_LBUTTONDOWN:
             xy = "%d,%d" % (x, y)
@@ -41,6 +28,6 @@ def puntos(fo):
     for i in lista:
         i[0] = int(i[0])
         i[1] = int(i[1])
-
-    lista = generador_matriz(lista, 617, 617)
     return lista
+
+
