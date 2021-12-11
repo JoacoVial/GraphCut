@@ -4,14 +4,14 @@ import maxflow
 import cv2
 import numpy as np
 from math import exp, pow, log
-#import tracemalloc
+import tracemalloc
 from matplotlib import pyplot as ppl
 import Prob
 import cap as K
 #import sys
 #np.set_printoptions(threshold=sys.maxsize)
 
-#tracemalloc.start()
+tracemalloc.start()
 
 def boundaryPenalty(ip, iq):
     bp = exp(-pow(int(ip) - int(iq), 2) / (2 * pow(4, 2)))
@@ -25,7 +25,7 @@ def cap_tlinks(lista):
     return k
 
 def tlinks(cap, meter, sacar, K):
-    link = [ [ 0 for i in range(617) ] for j in range(617) ]
+    link = [ [ 0 for i in range(256) ] for j in range(256) ]
     for i in range(len(meter)):
         for j in range(len(meter)):
             if meter[i][j] == 1:
@@ -37,10 +37,8 @@ def tlinks(cap, meter, sacar, K):
     return link
         
 
-
-
-img = cv2.imread('mri-brain.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float)
-
+img = cv2.imread('ganglios.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float)
+img = cv2.resize(img, (256, 256))
 g = maxflow.Graph[int]()
 
 B = 0
@@ -55,7 +53,7 @@ vecinos = []
 
 for i in range(len(img)):
     for j in range(len(img[i])):
-        if j == 616:
+        if j == 255:
             B = 0
             vecinos.append(B)
         else:
@@ -77,7 +75,7 @@ structure = np.array([  [0, 0, 0],
 
 for i in range(len(img)):
     for j in range(len(img[i])):
-        if i == 616:
+        if i == 255:
             B = 0
             vecinos.append(B)
         else:
@@ -99,18 +97,18 @@ KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO")
 TLINKS_OBJ = tlinks(obj, KOBJ, KBKG, peso)
 TLINKS_BGK = tlinks(bkg, KBKG, KOBJ, peso)
 
-g.add_grid_tedges(nodeids, TLINKS_OBJ, TLINKS_BGK)
+g.add_grid_tedges(nodeids, img, 255-img)
 
 flow = g.maxflow()
 print(f"\n\nFlujo máximo: {flow}\n")
 
 # sgm.shape == nodeids.shape
 sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
-print(sgm)
+
 img2 = np.int_(np.logical_not(sgm))
 
-#ppl.imshow(img2)
-#ppl.show()
+ppl.imshow(img2)
+ppl.show()
 
-#print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
-#tracemalloc.stop()
+print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
+tracemalloc.stop()
