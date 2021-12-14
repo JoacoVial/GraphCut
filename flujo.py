@@ -92,6 +92,7 @@ W = np.array(W)
 
 g.add_grid_edges(nodeids, weights=W, structure=structure, symmetric=True)
 
+print(peso)
 KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO",imgName)
 KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO",imgName)
 
@@ -104,7 +105,7 @@ print(f"\n\nFlujo máximo: {flow}\n")
 
 sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 
-img2 = np.int_(np.logical_not(sgm))
+img2 = np.int_(sgm)
 
 ppl.imshow(img2)
 #ppl.show()

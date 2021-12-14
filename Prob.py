@@ -39,7 +39,7 @@ def prob(imgName, l , KOBJ, KBKG, peso):
 				pBkg[ac][bc]= -log(0.0001) * l
 			if([bc,ac] in KOBJ):
 				pObj[ac][bc]= peso
-				pBkg[ac][bc]= 0				
+				pBkg[ac][bc]= 0			
 			if([bc,ac] in KBKG):
 				pObj[ac][bc]= 0
 				pBkg[ac][bc]= peso
