@@ -34,6 +34,6 @@ def corte():
         l[1][0]+=((l[1][1]-l[0][1])-(l[1][0]-l[0][0]))
     img=cv2.imread('mri-brain.jpg')
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
-    cv2.imshow("cropped", crop_img)
+    cv2.imshow("Imagen recortada", crop_img)
     cv2.waitKey(0)
     return crop_img
