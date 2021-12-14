@@ -36,10 +36,10 @@ def tlinks(cap, meter, sacar, K):
                 link[i][j] = cap[i][j]
     return link
  """       
-imgName = 'ganglios.png'
+imgName = 'mri-brain.jpg'
 img = cv2.imread(imgName, cv2.IMREAD_GRAYSCALE).astype(np.float)
 #img = cv2.resize(img, (100,100))
-size = len(img)
+size= len(img)
 
 
 g = maxflow.Graph[int]()
@@ -95,8 +95,7 @@ g.add_grid_edges(nodeids, weights=W, structure=structure, symmetric=True)
 KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO",imgName)
 KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO",imgName)
 
-
-obj, bkg = Prob.prob(imgName, 1, KOBJ, KBKG)
+obj, bkg = Prob.prob(imgName, 1, KOBJ, KBKG, peso)
 
 g.add_grid_tedges(nodeids, obj, bkg)
 
@@ -109,7 +108,7 @@ img2 = np.int_(np.logical_not(sgm))
 
 ppl.imshow(img2)
 #ppl.show()
-#ppl.savefig("prueba.jpg")
+ppl.savefig("prueba.jpg")
 
 #print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
 #tracemalloc.stop()

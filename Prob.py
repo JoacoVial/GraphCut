@@ -13,7 +13,7 @@ def otsu(imgName):
 	img_otsu  = img_gray < thresh
 	return(img_otsu)
 
-def prob(imgName, l , KOBJ, KBKG):
+def prob(imgName, l , KOBJ, KBKG, peso):
 	img = imread(imgName)
 	pObj = rgb2gray(img)
 	pBkg = rgb2gray(img)
@@ -32,17 +32,17 @@ def prob(imgName, l , KOBJ, KBKG):
 				pObj[ac][bc]= -log(0.5)* l
 				pBkg[ac][bc]= -log(0.5)* l
 			if(b <=0.050):#0%
-				pObj[ac][bc]= -log(0.01) * l
-				pBkg[ac][bc]= -log(1) * l
+				pObj[ac][bc]= -log(0.0001) * l
+				pBkg[ac][bc]= -log(0.9999) * l
 			if(b > 0.180 and b <= 0.400): #100%
-				pObj[ac][bc]= -log(1) * l
-				pBkg[ac][bc]= -log(0.01) * l
+				pObj[ac][bc]= -log(0.9999) * l
+				pBkg[ac][bc]= -log(0.0001) * l
 			if([bc,ac] in KOBJ):
-				pObj[ac][bc]= -log(1) * l
-				pBkg[ac][bc]= -log(0.01) * l				
+				pObj[ac][bc]= peso
+				pBkg[ac][bc]= 0				
 			if([bc,ac] in KBKG):
-				pObj[ac][bc]= -log(0.01) * l
-				pBkg[ac][bc]= -log(1) * l
+				pObj[ac][bc]= 0
+				pBkg[ac][bc]= peso
 			bc=bc+1
 		ac=ac+1
 		bc=0
