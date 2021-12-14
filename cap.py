@@ -8,9 +8,10 @@ def puntos(fo,imName):
     def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
         if event == cv2.EVENT_LBUTTONDOWN:
             xy = "%d,%d" % (x, y)
-            cv2.circle(img, (x, y), 1, (255, 0, 0), thickness = -1)
-            cv2.putText(img, xy, (x, y), cv2.FONT_HERSHEY_PLAIN,
-                        1.0, (0,0,0), thickness = 1)
+            if fo == "SELECCIONE LOS PUNTOS DEL OBJETO":
+                cv2.circle(img, (x, y), 1, (0, 0, 255), thickness = -1)
+            if fo == "SELECCIONE LOS PUNTOS DEL FONDO":
+                cv2.circle(img, (x, y), 1, (0, 255, 0), thickness = -1)
             cv2.imshow(fo, img)
             global puntero
             puntero.append(xy)

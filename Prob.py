@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from skimage.io import imread, imshow
 from skimage.color import rgb2gray, rgb2hsv
 from skimage.filters import threshold_otsu
+from skimage.transform import resize
 from math import log
 import cap as K
 def otsu(imgName):

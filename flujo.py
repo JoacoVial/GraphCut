@@ -23,7 +23,7 @@ def cap_tlinks(lista):
         for j in i:
             k += j
     return k
-
+"""
 def tlinks(cap, meter, sacar, K):
     link = [ [ 0 for i in range(256) ] for j in range(256) ]
     for i in range(len(meter)):
@@ -35,9 +35,10 @@ def tlinks(cap, meter, sacar, K):
             else:
                 link[i][j] = cap[i][j]
     return link
-        
-imgName = 'mri-brain.jpg'
+ """       
+imgName = 'ganglios.png'
 img = cv2.imread(imgName, cv2.IMREAD_GRAYSCALE).astype(np.float)
+#img = cv2.resize(img, (100,100))
 size = len(img)
 
 
@@ -51,8 +52,6 @@ structure = np.array([  [0, 0, 0],
 
 W = []
 vecinos = []
-
-
 
 for i in range(len(img)):
     for j in range(len(img[i])):
@@ -109,7 +108,8 @@ sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 img2 = np.int_(np.logical_not(sgm))
 
 ppl.imshow(img2)
-ppl.show()
+#ppl.show()
+#ppl.savefig("prueba.jpg")
 
 #print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
 #tracemalloc.stop()
