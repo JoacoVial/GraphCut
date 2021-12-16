@@ -32,8 +32,21 @@ def corte():
         l[1][1]+=((l[1][0]-l[0][0])-(l[1][1]-l[0][1]))
     else:
         l[1][0]+=((l[1][1]-l[0][1])-(l[1][0]-l[0][0]))
+    
+    print(l)
     img=cv2.imread('mri-brain.jpg')
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
+    cv2.putText(crop_img,"HOLI", (30,50),cv2.FONT_HERSHEY_SIMPLEX,2,(255,0,0),5)
     cv2.imshow("Imagen recortada", crop_img)
     cv2.waitKey(0)
+
+    img[l[0][1]:l[1][1],l[0][0]:l[1][0]] = crop_img
+
+    cv2.imshow("Nueva imagen",img)
+    cv2.waitKey(0)
     return crop_img
+
+corte()
+
+def pegar():
+    corte_img = corte()
