@@ -8,6 +8,7 @@ import tracemalloc
 from matplotlib import pyplot as ppl
 import Prob
 import cap as K
+import pintar
 #import sys
 #np.set_printoptions(threshold=sys.maxsize)
 
@@ -106,6 +107,8 @@ print(f"\n\nFlujo máximo: {flow}\n")
 sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 
 img2 = np.int_(sgm)
+
+img2 = pintar.rojo(img2)
 
 ppl.imshow(img2)
 #ppl.show()
