@@ -40,7 +40,7 @@ def tlinks(cap, meter, sacar, K):
     return link
  """       
 imgName = 'mri-brain.jpg'
-img, lista = corte.corte()
+img2, img ,lista = corte.corte()
 size= len(img)
 
 
@@ -57,6 +57,7 @@ vecinos = []
 
 for i in range(len(img)):
     for j in range(len(img[i])):
+        print(i,j)
         if j == size-1:
             B = 0
             vecinos.append(B)
@@ -95,10 +96,10 @@ W = np.array(W)
 g.add_grid_edges(nodeids, weights=W, structure=structure, symmetric=True)
 
 print(peso)
-KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO",imgName)
-KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO",imgName)
+KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO",img2)
+KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO",img2)
 
-obj, bkg = Prob.prob(imgName, 1, KOBJ, KBKG, peso)
+obj, bkg = Prob.prob(img2, 1, KOBJ, KBKG, peso)
 
 g.add_grid_tedges(nodeids, obj, bkg)
 
@@ -110,9 +111,10 @@ sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 img2 = np.int_(sgm)
 
 img2 = pintar.rojo(img2)
+ppl.imshow(img2)
 img=cv2.imread('mri-brain.jpg')
-img2 = corte.pegar()
-ppl.imshow(img,img2,lista)
+img2 = corte.pegar(img,img2,lista)
+ppl.imshow(img2)
 #ppl.show()
 ppl.savefig("prueba.jpg")
 
