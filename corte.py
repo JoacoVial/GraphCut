@@ -35,12 +35,12 @@ def corte():
     
     img = cv2.imread('mri-brain.jpg')
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
-    cv2.waitKey(0)
+    img = cv2.imread('mri-brain.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float)
+    crop_img_gris = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
+    #cv2.imshow("Imagen recortada", crop_img)
+    #cv2.waitKey(0)
 
-    img[l[0][1]:l[1][1],l[0][0]:l[1][0]] = crop_img
-
-
-    return crop_img, l
+    return crop_img, crop_img_gris,l
 
 #img,lista = corte()
 #print(lista)
@@ -52,6 +52,3 @@ def pegar(img,img_corte, l):
     cv2.waitKey(0)
 
     return img
-
-
-
