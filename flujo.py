@@ -42,7 +42,7 @@ def tlinks(cap, meter, sacar, K):
 imgName = 'mri-brain.jpg'
 img, lista = corte.corte()
 size= len(img)
-
+print(size)
 
 g = maxflow.Graph[int]()
 B = 0
@@ -55,8 +55,8 @@ structure = np.array([  [0, 0, 0],
 W = []
 vecinos = []
 
-for i in range(len(img)):
-    for j in range(len(img[i])):
+for i in range(size):
+    for j in range(size):
         if j == size-1:
             B = 0
             vecinos.append(B)
@@ -77,8 +77,8 @@ structure = np.array([  [0, 0, 0],
                         [0, 0, 0],
                         [0, 1, 0]])
 
-for i in range(len(img)):
-    for j in range(len(img[i])):
+for i in range(size):
+    for j in range(size):
         if i == size-1:
             B = 0
             vecinos.append(B)
