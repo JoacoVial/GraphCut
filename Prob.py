@@ -13,8 +13,7 @@ def otsu(imgName):
 	img_otsu  = img_gray < thresh
 	return(img_otsu)
 
-def prob(imgName, l , KOBJ, KBKG, peso):
-	img = imread(imgName)
+def prob(img, l , KOBJ, KBKG, peso):
 	pObj = rgb2gray(img)
 	pBkg = rgb2gray(img)
 	img_hsv = rgb2hsv(img)
