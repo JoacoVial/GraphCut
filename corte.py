@@ -33,7 +33,7 @@ def corte():
     else:
         l[1][0]+=((l[1][1]-l[0][1])-(l[1][0]-l[0][0]))
     
-    img=cv2.imread('mri-brain.jpg')
+    img = cv2.imread('mri-brain.jpg')
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
     cv2.waitKey(0)
 

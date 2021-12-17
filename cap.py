@@ -1,10 +1,9 @@
 import cv2
 import numpy as np
 puntero = []
-def puntos(fo,imName):
+def puntos(fo,img):
     global puntero
     puntero = []
-    img=cv2.imread(imName)
     def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
         if event == cv2.EVENT_LBUTTONDOWN:
             xy = "%d,%d" % (x, y)
