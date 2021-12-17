@@ -28,10 +28,10 @@ def corte():
     for i in l:
         i[0] = int(i[0])
         i[1] = int(i[1])
-    if l[1][0]-l[0][0]>l[1][1]-l[0][1]:
+    """if l[1][0]-l[0][0]>l[1][1]-l[0][1]:
         l[1][1]+=((l[1][0]-l[0][0])-(l[1][1]-l[0][1]))
     else:
-        l[1][0]+=((l[1][1]-l[0][1])-(l[1][0]-l[0][0]))
+        l[1][0]+=((l[1][1]-l[0][1])-(l[1][0]-l[0][0]))"""
     
     img = cv2.imread('mri-brain.jpg')
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
@@ -49,7 +49,7 @@ def corte():
 def pegar(img,img_corte, l):
     img[l[0][1]:l[1][1],l[0][0]:l[1][0]] = img_corte
 
-    cv2.imshow("Nueva imagen",img)
+    cv2.imshow("IRM segmentada",img)
     cv2.waitKey(0)
 
     return img

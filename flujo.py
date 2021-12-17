@@ -42,8 +42,8 @@ def tlinks(cap, meter, sacar, K):
 imgName = 'mri-brain.jpg'
 ori_corte, img2, img ,lista = corte.corte()
 ori_corte = corte.corte2(lista)
-size= len(img)
-print(size)
+size_x = len(img)
+size_y = len(img[0]) 
 
 g = maxflow.Graph[int]()
 B = 0
@@ -56,9 +56,9 @@ structure = np.array([  [0, 0, 0],
 W = []
 vecinos = []
 
-for i in range(size):
-    for j in range(size):
-        if j == size-1:
+for i in range(size_x):
+    for j in range(size_y):
+        if j == size_y-1:
             B = 0
             vecinos.append(B)
         else:
@@ -78,9 +78,9 @@ structure = np.array([  [0, 0, 0],
                         [0, 0, 0],
                         [0, 1, 0]])
 
-for i in range(size):
-    for j in range(size):
-        if i == size-1:
+for i in range(size_x):
+    for j in range(size_y):
+        if i == size_x-1:
             B = 0
             vecinos.append(B)
         else:
@@ -112,11 +112,12 @@ cut = np.int_(sgm)
 
 cut = pintar.rojo(ori_corte, cut)
 ppl.imshow(cut)
-img=cv2.imread('mri-brain.jpg')
-img2 = corte.pegar(img,cut,lista)
-ppl.imshow(img2)
-#ppl.show()
 ppl.savefig("prueba.jpg")
+img=cv2.imread('mri-brain.jpg')
+img2 = corte.pegar(img, cut, lista)
+ppl.imshow(img2)
+ppl.show()
+#ppl.savefig("prueba.jpg")
 
 #print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
 #tracemalloc.stop()
