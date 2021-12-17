@@ -41,6 +41,7 @@ def tlinks(cap, meter, sacar, K):
  """       
 imgName = 'mri-brain.jpg'
 ori_corte, img2, img ,lista = corte.corte()
+ori_corte = corte.corte2(lista)
 size= len(img)
 print(size)
 
@@ -99,8 +100,7 @@ print(peso)
 KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO",img2)
 KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO",img2)
 
-obj, bkg = Prob.prob(img2, 1, KOBJ, KBKG, peso)
-
+obj, bkg = Prob.prob(ori_corte, 1, KOBJ, KBKG, peso)
 g.add_grid_tedges(nodeids, obj, bkg)
 
 flow = g.maxflow()
@@ -113,7 +113,7 @@ cut = np.int_(sgm)
 cut = pintar.rojo(ori_corte, cut)
 ppl.imshow(cut)
 img=cv2.imread('mri-brain.jpg')
-img2 = corte.pegar(img,ori_corte,lista)
+img2 = corte.pegar(img,cut,lista)
 ppl.imshow(img2)
 #ppl.show()
 ppl.savefig("prueba.jpg")
