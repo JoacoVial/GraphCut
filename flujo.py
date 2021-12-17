@@ -111,7 +111,7 @@ sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 img2 = np.int_(sgm)
 
 img2 = pintar.rojo(img2)
-ppl.imshow(img2)
+cv2.imshow(img2)
 img=cv2.imread('mri-brain.jpg')
 img2 = corte.pegar(img,img2,lista)
 ppl.imshow(img2)
