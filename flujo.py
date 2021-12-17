@@ -9,6 +9,8 @@ from matplotlib import pyplot as ppl
 import Prob
 import cap as K
 import pintar
+import corte
+
 #import sys
 #np.set_printoptions(threshold=sys.maxsize)
 
