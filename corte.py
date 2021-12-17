@@ -44,8 +44,8 @@ def corte():
 
     return crop_img, l
 
-img,lista = corte()
-print(lista)
+#img,lista = corte()
+#print(lista)
 
 def pegar(img,img_corte, l):
     img[l[0][1]:l[1][1],l[0][0]:l[1][0]] = img_corte
