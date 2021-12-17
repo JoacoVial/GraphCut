@@ -52,6 +52,3 @@ def pegar(img,img_corte, l):
     cv2.waitKey(0)
 
     return img
-
-
-
