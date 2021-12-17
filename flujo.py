@@ -40,7 +40,7 @@ def tlinks(cap, meter, sacar, K):
     return link
  """       
 imgName = 'mri-brain.jpg'
-img2, img ,lista = corte.corte()
+ori_corte, img2, img ,lista = corte.corte()
 size= len(img)
 print(size)
 
@@ -95,6 +95,7 @@ W = np.array(W)
 g.add_grid_edges(nodeids, weights=W, structure=structure, symmetric=True)
 
 print(peso)
+
 KOBJ = K.puntos("SELECCIONE LOS PUNTOS DEL OBJETO",img2)
 KBKG = K.puntos("SELECCIONE LOS PUNTOS DEL FONDO",img2)
 
@@ -107,12 +108,12 @@ print(f"\n\nFlujo máximo: {flow}\n")
 
 sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 
-img2 = np.int_(sgm)
+cut = np.int_(sgm)
 
-img2 = pintar.rojo(img2)
-ppl.imshow(img2)
+cut = pintar.rojo(ori_corte, cut)
+ppl.imshow(cut)
 img=cv2.imread('mri-brain.jpg')
-img2 = corte.pegar(img,img2,lista)
+img2 = corte.pegar(img,ori_corte,lista)
 ppl.imshow(img2)
 #ppl.show()
 ppl.savefig("prueba.jpg")

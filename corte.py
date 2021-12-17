@@ -40,7 +40,7 @@ def corte():
     #cv2.imshow("Imagen recortada", crop_img)
     #cv2.waitKey(0)
 
-    return crop_img, crop_img_gris,l
+    return crop_img, crop_img, crop_img_gris,l
 
 #img,lista = corte()
 #print(lista)
