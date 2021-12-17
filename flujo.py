@@ -40,8 +40,7 @@ def tlinks(cap, meter, sacar, K):
     return link
  """       
 imgName = 'mri-brain.jpg'
-img = cv2.imread(imgName, cv2.IMREAD_GRAYSCALE).astype(np.float)
-#img = cv2.resize(img, (100,100))
+img, lista = corte.corte()
 size= len(img)
 
 
@@ -111,8 +110,9 @@ sgm = g.get_grid_segments(nodeids) #False pertenece a S y True a T
 img2 = np.int_(sgm)
 
 img2 = pintar.rojo(img2)
-
-ppl.imshow(img2)
+img=cv2.imread('mri-brain.jpg')
+img2 = corte.pegar()
+ppl.imshow(img,img2,lista)
 #ppl.show()
 ppl.savefig("prueba.jpg")
 
