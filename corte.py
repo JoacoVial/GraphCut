@@ -33,7 +33,6 @@ def corte():
     else:
         l[1][0]+=((l[1][1]-l[0][1])-(l[1][0]-l[0][0]))
     
-    print(l)
     img=cv2.imread('mri-brain.jpg')
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
 
@@ -43,9 +42,10 @@ def corte():
     img[l[0][1]:l[1][1],l[0][0]:l[1][0]] = crop_img
 
 
-    return crop_img
+    return crop_img, l
 
-corte()
+img,lista = corte()
+print(lista)
 
 def pegar(img,img_corte, l):
     img[l[0][1]:l[1][1],l[0][0]:l[1][0]] = img_corte
