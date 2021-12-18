@@ -49,8 +49,8 @@ def corte(nombre):
 def pegar(img,img_corte, l):
     img[l[0][1]:l[1][1],l[0][0]:l[1][0]] = img_corte
 
-    cv2.imshow("IRM segmentada",img)
-    cv2.waitKey(0)
+    #cv2.imshow("IRM segmentada",img)
+    #cv2.waitKey(0)
 
     return img
 
