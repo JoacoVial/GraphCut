@@ -10,7 +10,7 @@ import Prob
 import cap as K
 import pintar
 import corte
-
+from time import time
 #import sys
 #np.set_printoptions(threshold=sys.maxsize)
 
@@ -115,6 +115,17 @@ im1 = "imagenes/image_9.jpg"
 im2=  "imagenes/image_64.jpg"
 im3 = "imagenes/image_65.jpg"
 
+init= time()
 segmentation(im1)
+end = time()
+print("Time image 1: ",end-init)
+
+init= time()
 segmentation(im2)
+end = time()
+print("Time image 2: ",end-init)
+
+init= time()
 segmentation(im3)
+end = time()
+print("Time image 3: ",end-init)
