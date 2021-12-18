@@ -39,9 +39,9 @@ def tlinks(cap, meter, sacar, K):
                 link[i][j] = cap[i][j]
     return link
  """       
-imgName = 'mri-brain.jpg'
-ori_corte, img2, img ,lista = corte.corte()
-ori_corte = corte.corte2(lista)
+imgName = 'imagen.jpg'
+ori_corte, img2, img ,lista = corte.corte(imgName)
+ori_corte = corte.corte2(lista, imgName)
 size_x = len(img)
 size_y = len(img[0]) 
 
@@ -113,7 +113,7 @@ cut = np.int_(sgm)
 cut = pintar.rojo(ori_corte, cut)
 ppl.imshow(cut)
 ppl.savefig("prueba.jpg")
-img=cv2.imread('mri-brain.jpg')
+img=cv2.imread(imgName)
 img2 = corte.pegar(img, cut, lista)
 ppl.imshow(img2)
 ppl.show()

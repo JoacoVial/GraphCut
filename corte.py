@@ -2,11 +2,11 @@ import cv2
 import numpy as np
 puntero = []
 
-def corte():
+def corte(nombre):
     fo = "Seleccione los pixeles para recortar la imagen"
     global puntero
     puntero = []
-    img=cv2.imread('mri-brain.jpg')
+    img=cv2.imread(nombre)
     def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
         if event == cv2.EVENT_LBUTTONDOWN:
             xy = "%d,%d" % (x, y)
@@ -33,10 +33,10 @@ def corte():
     else:
         l[1][0]+=((l[1][1]-l[0][1])-(l[1][0]-l[0][0]))"""
     
-    img = cv2.imread('mri-brain.jpg')
+    img = cv2.imread(nombre)
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
     cut_orig = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
-    img = cv2.imread('mri-brain.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float)
+    img = cv2.imread(nombre, cv2.IMREAD_GRAYSCALE).astype(np.float)
     crop_img_gris = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
     #cv2.imshow("Imagen recortada", crop_img)
     #cv2.waitKey(0)
@@ -54,8 +54,8 @@ def pegar(img,img_corte, l):
 
     return img
 
-def corte2(l):
-    img = cv2.imread('mri-brain.jpg')
+def corte2(l, nombre):
+    img = cv2.imread(nombre)
     crop_img = img[l[0][1]:l[1][1],l[0][0]:l[1][0]]
 
     return crop_img
