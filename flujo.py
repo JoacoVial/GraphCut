@@ -4,7 +4,6 @@ import maxflow
 import cv2
 import numpy as np
 from math import exp, pow, log
-import tracemalloc
 from matplotlib import pyplot as ppl
 import Prob
 import cap as K
@@ -13,8 +12,6 @@ import corte
 from time import time
 #import sys
 #np.set_printoptions(threshold=sys.maxsize)
-
-#tracemalloc.start()
 
 def boundaryPenalty(ip, iq):
     bp = exp(-pow(int(ip) - int(iq), 2) / (2 * pow(4, 2)))
@@ -107,9 +104,6 @@ def segmentation(imgName):
     ppl.imshow(img2)
     ppl.show()
     #ppl.savefig("prueba.jpg")
-
-    #print("Memoria utilizada: {} bytes\n\n".format(tracemalloc.get_traced_memory()[1] - tracemalloc.get_tracemalloc_memory()))
-    #tracemalloc.stop()
 
 im1 = "imagenes/image_9.jpg"
 im2=  "imagenes/image_64.jpg"
