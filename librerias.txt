@@ -2,5 +2,4 @@ maxflow: pip install PyMaxflow
 cv2: pip install opencv-python
 numpy: pip install numpy
 math: pip install python-math
-tracemalloc: pip install pytracemalloc==0.9.1
 matplotlib: pip install matplotlib
