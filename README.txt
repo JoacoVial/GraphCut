@@ -13,4 +13,5 @@ pantalla.
 07-. Seleccionar los puntos del fondo en el recorte que aparecerá en pantalla.
 08-. Presionar el botón escape.
 09-. Observar los resultados.
-10-. Repetir los pasos 2 a 8 con las siguientes 2 imágenes.
+10-. Presionar el botón escape.
+11-. Repetir los pasos 2 a 10 con las siguientes 2 imágenes.
