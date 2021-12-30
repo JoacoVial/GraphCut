@@ -1,4 +1,5 @@
-Las instrucciones para utilizar el software programado por el grupo FSOCIETY son las
+Las instrucciones para utilizar el software programado por el grupo FSOCIETY, en la
+cual se segmentan las 3 imágenes seleccionadas por el grupo, son las
 siguientes:
 01-. Asegurarse de tener todas las librerías de Python3 que utiliza el software,
 las cuales se encuentran enumeradas en el archivo librerias.txt
