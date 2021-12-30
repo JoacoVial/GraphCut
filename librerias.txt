@@ -3,3 +3,6 @@ cv2: pip install opencv-python
 numpy: pip install numpy
 math: pip install python-math
 matplotlib: pip install matplotlib
+scikit-image: pip install scikit-image
+comando: 
+pip install PyMaxflow opencv-python numpy python-math matplotlib scikit-image
